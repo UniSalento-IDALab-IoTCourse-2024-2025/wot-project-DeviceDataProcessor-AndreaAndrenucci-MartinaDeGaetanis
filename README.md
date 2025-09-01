@@ -25,19 +25,19 @@ Front-end Web e Back-end, il quale è stato sviluppato secondo un’architettura
 <img width="2083" height="915" alt="Architettura" src="https://github.com/user-attachments/assets/30c6c601-d99f-47ed-bbdf-bec2b0797d4c" />
 
 Le principali componenti in cui si articola in sistema sono:  
-#### User Service
+#### User Service *([Vedi repository](https://github.com/UniSalento-IDALab-IoTCourse-2024-2025/wot-project-UserService-AndreaAndrenucci-MartinaDeGaetanis))*
 Il microservizio User Service gestisce gli utenti del sistema, occupandosi di registrazione, autenticazione, gestione degli account e dei domini affiliati 
 da parte dell’Admin. Utilizza token JWT per garantire un accesso sicuro alle risorse e interagisce con il Notification Service per l’invio di email.
 
-#### Notification
+#### Notification *([Vedi repository](https://github.com/UniSalento-IDALab-IoTCourse-2024-2025/wot-project-Notification-AndreaAndrenucci-MartinaDeGaetanis))*
 Il microservizio gestisce l’invio delle email e comunica con il microservizio UserService tramite il protocollo AMQP, implementato con RabbitMQ.
 
-#### Smartbox
+#### Smartbox *([Vedi repository](https://github.com/UniSalento-IDALab-IoTCourse-2024-2025/wot-project-Smartbox-AndreaAndrenucci-MartinaDeGaetanis))*
 La Smartbox è un dispositivo basato su ESP32 DevKit-C con sensori per il rilevamento degli inquinanti. Il microcontrollore, connesso alla rete, pubblica 
 sul relativo topic le misure al minuto 50 di ogni ora affichè vengano salvate su un microservizio registrato al broker MQTT e gestisce eventuali disconnessioni
 o malfunzionamenti tramite messaggi e API dedicate.
 
-#### Device Indexer
+#### Device Indexer *([Vedi repository](https://github.com/UniSalento-IDALab-IoTCourse-2024-2025/wot-project-DeviceIndexer-AndreaAndrenucci-MartinaDeGaetanis))*
 Il microservizio Device Indexer mantiene il registro dei dispositivi, traccia lo stato di connessione, riceve e inoltra le misurazioni al Data Processor. 
 Inoltre espone API per la gestione dei dispositivi e la loro disconnessione in caso di anomalie.
 
@@ -45,13 +45,13 @@ Inoltre espone API per la gestione dei dispositivi e la loro disconnessione in c
 Il Data Processor si occupa direttamente del post processing dei dati, della generazione delle immagini e della gestione delle simulazioni. Esegue interpolazioni 
 per generare mappe di distribuzione degli inquinanti e supporta simulazioni ambientali e sanitarie, fornendo inoltre API per l’accesso alle immagini e metriche.
 
-#### Client per simulazioni
+#### Client per simulazioni *([Vedi repository](https://github.com/UniSalento-IDALab-IoTCourse-2024-2025/wot-project-MqttClient-AndreaAndrenucci-MartinaDeGaetanis))*
 Un client Python simula l’invio concorrente di misurazioni da più dispositivi, generando dati realistici basati sulla distribuzione geografica delle province pugliesi.
 
-#### Gateway
+#### Gateway *([Vedi repository](https://github.com/UniSalento-IDALab-IoTCourse-2024-2025/wot-project-Gateway-AndreaAndrenucci-MartinaDeGaetanis))*
 I microservizi sono stati connessi al frontend utilizzando KrakenD, un gateway con configurazione basata su JSON
 
-#### Frontend
+#### Frontend *([Vedi repository](https://github.com/UniSalento-IDALab-IoTCourse-2024-2025/wot-project-Frontend-AndreaAndrenucci-MartinaDeGaetanis))*
 L’interfaccia web permette agli utenti di visualizzare le mappe degli inquinanti sull’intero territorio pugliese o, a scelta, solo su Lecce. In base al ruolo, gli utenti
 possono eseguire simulazioni, mentre la gestione dell’applicazione è riservata esclusivamente all’Admin.
 
@@ -83,7 +83,7 @@ predizioni viene poi normalizzata rispetto la media e sottratta alle predizioni 
 Viene creata una serie di immagini, compresse in un archivio, che l’utente scarica sulla propria macchina.  
 Nella simulazione in ambito health, l’utente può visualizzare una mappa che evidenzia le aree in cui l’inquinamento atmosferico ha il maggiore impatto
 sulla salute, sulla base delle misurazioni più recenti degli inquinanti. Inoltre, è possibile generare la stessa mappa per una data futura, utilizzando le predizioni
-di un modello di rete neurale precedentemente addestrato.
+di un modello di rete neurale precedentemente addestrato. ***([Vedi repository addestramento modello Health](https://github.com/UniSalento-IDALab-IoTCourse-2024-2025/wot-project-ModelloHealth-AndreaAndrenucci-MartinaDeGaetanis))***
 
 #### Metriche ed Healthcheck
 In aggiunta, il microservizio espone un’API che traccia a livello temporale il valore dell’inquinante su tutta la puglia, ed un’API per controllare lo stato di
