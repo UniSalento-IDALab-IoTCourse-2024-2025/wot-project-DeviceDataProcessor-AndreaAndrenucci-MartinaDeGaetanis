@@ -1,4 +1,6 @@
-## Descrizione del progetto "DigitAIR"
+<img width="300" height="512" alt="DigitAIR" src="https://github.com/user-attachments/assets/1e9a23a8-a4c2-46bd-b907-5d0fec6c5426" />
+
+## Descrizione del progetto
 Il controllo della qualità dell’aria rappresenta una delle priorità ambientali più importanti del nostro tempo. Con l’intensificarsi dell’urbanizzazione, 
 dell’industrializzazione e dei cambiamenti climatici, il monitoraggio preciso e tempestivo degli inquinanti atmosferici è diventato fondamentale per la tutela della
 salute pubblica e la sostenibilità ambientale.  
