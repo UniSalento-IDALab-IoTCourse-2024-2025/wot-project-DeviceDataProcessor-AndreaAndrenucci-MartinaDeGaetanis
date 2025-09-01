@@ -1,0 +1,58 @@
+version: "3.9"
+
+services:
+  mongo:
+    image: mongo:6.0
+    container_name: dataprocessor_mongodb
+    restart: always
+    networks:
+      - mongo-net
+    ports:
+      - "27016:27017"
+    volumes:
+      - mongo_data:/data/db
+
+  flask_app:
+    build: .
+    container_name: data_processor
+    restart: always
+    ports:
+      - "8083:8080"
+    depends_on:
+      - mongo
+    networks:
+      - microservices_network
+      - mongo-net
+      - krakend-net
+    environment:
+      - MONGO_URI=mongodb://mongo:27017/
+    volumes:
+      - .:/app
+    command: python app.py
+
+  celery_worker:
+    build: .
+    container_name: celery_worker
+    restart: always
+    environment:
+      - MONGO_URI=mongodb://mongo:27017/
+    depends_on:
+      - flask_app
+      - mongo
+    networks:
+      - microservices_network
+      - mongo-net
+    volumes:
+      - .:/app
+    command: celery -A components.celery_worker.celery_app worker --pool threads
+
+networks:
+  microservices_network:
+    external: true
+  mongo-net:
+    driver: "bridge"
+  krakend-net:
+    external: true
+
+volumes:
+  mongo_data:

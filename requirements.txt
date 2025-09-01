@@ -1,0 +1,16 @@
+flask 
+pymongo
+pandas
+numpy
+scipy
+matplotlib
+scikit-learn
+joblib
+contextily
+cartopy
+Flask-APScheduler
+pika
+celery
+tensorflow-cpu==2.20.0
+python-dotenv
+PyJWT
